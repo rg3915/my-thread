@@ -11,4 +11,5 @@ urlpatterns = [
     path('person/<int:pk>/edit/', c.person_update, name='person_edit'),
     path('person/<int:pk>/delete/',
          c.person_delete, name='person_delete'),
+    path('thread/', c.my_thread, name='thread'),
 ]

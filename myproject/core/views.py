@@ -7,6 +7,7 @@ from django.views.generic import UpdateView, DeleteView
 from .mixins import NameSearchMixin
 from .models import Person
 from .forms import PersonForm
+from .my_thread import MyThread
 
 
 def home(request):
@@ -25,4 +26,14 @@ person_create = CreateView.as_view(model=Person, form_class=PersonForm)
 person_update = UpdateView.as_view(model=Person, form_class=PersonForm)
 
 person_delete = DeleteView.as_view(
-    model=Person, success_url=r('core:person_list'))
+    model=Person,
+    success_url=r('core:person_list')
+)
+
+
+def my_thread(request):
+    thread = MyThread()
+    thread.start()
+    msg = 'Start thread...'
+    print(msg)
+    return HttpResponseRedirect(reverse('core:home'))
